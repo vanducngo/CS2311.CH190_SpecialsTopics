@@ -1,0 +1,58 @@
+DATA:
+  CHEXPERT_PATH_ROOT_PATH: "/home/ngoto/Working/Data"
+  CHEXPERT_PATH: "/home/ngoto/Working/Data/CheXpert-v1.0-small"
+  # CHEXPERT_PATH_ROOT_PATH: "/Users/admin/Working/Data"
+  # CHEXPERT_PATH: "/Users/admin/Working/Data/CheXpert-v1.0-small"
+  CHEXPERT_TRAIN_CSV: "train_final.csv"
+  CHEXPERT_TEST_CSV: "valid_final.csv"
+
+  # VINDR_PATH: "/Users/admin/Working/Data/MixData/vinbigdata_structured"
+  VINDR_PATH: "/home/ngo/Working/Data/MixData/vinbigdata_structured"
+  VINDR_CSV: "validate.csv"
+  VINDR_IMAGE_DIR: "images"
+
+  # NIH14_PATH: "/Users/admin/Working/Data/MixData/nih_14_structured"
+  NIH14_PATH: "/home/ngo/Working/Data/MixData/nih_14_structured"
+  NIH14_CSV: "validate.csv"
+  NIH14_IMAGE_DIR: "images"
+
+  # PADCHEST_PATH: "/Users/admin/Working/Data/MixData/padchest_structured"
+  # PADCHEST_CSV: "validate.csv"
+  # PADCHEST_IMAGE_DIR: "images"
+  PADCHEST_PATH: "/home/ngo/Working/Data/PadChestPruning"
+  PADCHEST_CSV: "padchest_labels.csv"
+  PADCHEST_IMAGE_DIR: "images"
+
+
+COMMON_DISEASES:
+    - 'Atelectasis'
+    - 'Cardiomegaly'
+    - 'Consolidation'
+    - 'Pleural Effusion'
+    - 'Pneumothorax'
+
+# Cấu hình mô hình
+MODEL:
+  ARCH: "mobilenet_v3_small" 
+  NUM_CLASSES: 5  # Common Label
+
+TRAINING:
+  DEVICE: "cuda"
+  EPOCHS: 100
+  BATCH_SIZE: 64
+  LEARNING_RATE: 1e-5
+  WEIGHT_DECAY: 1e-4
+  EARLY_STOPPING_PATIENCE: 15 
+  USE_WEIGHTED_LOSS: True
+  USE_WEIGHTED_SAMPLER: False
+
+OPTIM:
+  METHOD: Adam
+  STEPS: 1
+  BETA: 0.9
+  WD: 0.
+
+INPUT:
+  SIZE: (224, 224)
+
+OUTPUT_DIR: "./results/"
